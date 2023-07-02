@@ -1,0 +1,26 @@
+- name: Deploy Media Server
+  hosts: all
+  tasks:
+    - name: Update all apt packages
+      ansible.builtin.apt:
+        update_cache: true
+    - name: Install Libass Library required by FFMpeg for subtitle burning
+      ansible.builtin.apt:
+        name: libass-dev
+        state: present
+    - name: Install Nginx for streaming media files
+      ansible.builtin.apt:
+        name: nginx
+        state: present
+    - name: Install FFMpeg for transcoding media files
+      ansible.builtin.apt:
+        name: ffmpeg
+        state: present
+    - name: Install Nginx Extras for MP4 streaming
+      ansible.builtin.apt:
+        name: nginx-extras
+        state: present
+    - name: Install Transmission for downloading torrents
+      ansible.builtin.apt:
+        name: transmission-cli
+        state: present
