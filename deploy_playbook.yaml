@@ -1,5 +1,10 @@
 - name: Deploy Media Server
   hosts: all
+  handlers:
+    - name: Restart Nginx
+      ansible.builtin.service:
+        name: nginx
+        state: restarted
   tasks:
     - name: Update all apt packages
       ansible.builtin.apt:
@@ -29,3 +34,9 @@
         name: nginx
         state: started
         enabled: true
+    - name: Apply Nginx template
+      ansible.builtin.template:
+        src: files/nginx.conf.j2
+        dest: /etc/nginx/sites-available/default
+        mode: '0644'
+      notify: Restart Nginx

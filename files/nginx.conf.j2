@@ -1,13 +1,20 @@
 server {
   listen 80;
 
-  root {{ document_root }}/{{ app_root }};
+  root /var/www/html;
   index index.html index.htm;
 
-  server_name {{ server_name }};
+  server_name _;
+
+  location ~/.mp4 {
+    mp4;
+    mp4_buffer_size       1m;
+    mp4_max_buffer_size   5m;
+    limit_rate 260k; # about 2mbit
+    limit_rate_after 3m;
+  }
   
   location / {
-   default_type "text/html";
    try_files $uri.html $uri $uri/ =404;
   }
 }
