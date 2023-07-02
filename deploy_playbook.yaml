@@ -24,3 +24,8 @@
       ansible.builtin.apt:
         name: transmission-cli
         state: present
+    - name: Start Nginx Service
+      ansible.builtin.service:
+        name: nginx
+        state: started
+        enabled: true

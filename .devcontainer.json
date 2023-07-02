@@ -1,0 +1,12 @@
+{
+    "image": "mcr.microsoft.com/devcontainers/python:3",
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "redhat.ansible",
+                "william-voyek.vscode-nginx"
+            ]
+        }
+    },
+    "postCreateCommand": "bash install_ansible.sh"
+}
